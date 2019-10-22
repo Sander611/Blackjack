@@ -24,76 +24,79 @@ namespace Spel_Blackjack
         private List<String> TemplateVormen = new List<String>() { "Harten", "Ruiten", "Schoppen", "Klaver"};
 
         private static Random rng = new Random();
+
+
         public Spel()
         {
             genKaarten();
             schudKaarten();
-
         }
+
+
 
         public void Starten()
         {
-
-            while (SpelerLijst.Count != 0)
+            StatusTonen(dealer, false);
+            foreach (Speler speler in SpelerLijst)
             {
-                StatusTonen(dealer, false);
-                foreach (Speler speler in SpelerLijst)
+                if (Convert.ToString(speler.Naam).Equals("dealer"))
                 {
-                    if (Convert.ToString(speler.Naam).Equals("dealer"))
-                    {
-                        Console.WriteLine("Dealer is aan de beurt.");
-                    }
-                    else
-                    {
-                        StatusTonen(speler, false);
-                        int spelerHand = speler.BerekenHand();
+                    Console.WriteLine("Dealer is aan de beurt.");
+                    dealerBeurt();
+                }
+                else
+                {
+                    StatusTonen(speler, false);
+                    int spelerHand = speler.BerekenHand();
 
-                        bool nogKeerVragen = true;
-                        while (nogKeerVragen)
+                    bool nogKeerVragen = true;
+                    while (nogKeerVragen)
+                    {
+                        updateMessage("(" + speler.Naam + ") Druk 'k' om een kaart te pakken, 'p' om te passen of 'q' om het spel te verlaten.");
+                        ConsoleKey gedrukteKey = waitForKey();
+                        if (gedrukteKey == ConsoleKey.K)
                         {
-                            updateMessage("(" + speler.Naam + ") Druk 'k' om een kaart te pakken, 'p' om te passen of 'q' om het spel te verlaten.");
-                            ConsoleKey gedrukteKey = waitForKey();
-                            if (gedrukteKey == ConsoleKey.K)
-                            {
-                                updateMessage(speler.Naam + " krijg een nieuwe kaart!");
-                                geefKaart(speler);
-                                spelerHand = speler.BerekenHand();
-                                StatusTonen(speler, false);
-                                if (spelerHand < 21)
-                                {
-                                    nogKeerVragen = true;
-                                }
-                                else
-                                {
-                                    nogKeerVragen = false;
-                                }
-
-                            }
-                            else if (gedrukteKey == ConsoleKey.Q)
-                            {
-                                //updateMessage(speler.Naam + " heeft het spel verlaten.");
-                                //SpelerLijst.Remove(speler); //WERKT NOG NIET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                                //nogKeerVragen = false;
-                            }
-
-                            else if (gedrukteKey == ConsoleKey.P)
-                            {
-                                updateMessage(speler.Naam + " passed.");
-                                nogKeerVragen = false;
-                            }
-                            else
+                            updateMessage(speler.Naam + " krijg een nieuwe kaart!");
+                            geefKaart(speler);
+                            spelerHand = speler.BerekenHand();
+                            StatusTonen(speler, false);
+                            if (spelerHand < 21)
                             {
                                 nogKeerVragen = true;
                             }
+                            else
+                            {
+                                nogKeerVragen = false;
+                            }
+
                         }
-                        
+                        else if (gedrukteKey == ConsoleKey.Q)
+                        {
+                            //updateMessage(speler.Naam + " heeft het spel verlaten.");
+                            //SpelerLijst.Remove(speler); //WERKT NOG NIET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            //nogKeerVragen = false;
+                        }
+
+                        else if (gedrukteKey == ConsoleKey.P)
+                        {
+                            updateMessage(speler.Naam + " passed.");
+                            nogKeerVragen = false;
+                        }
+                        else
+                        {
+                            nogKeerVragen = true;
+                        }
                     }
+                        
                 }
-                dealerBeurt();
-                checkWins();
-                break;
             }
+      
+            checkWins();
+            // CHECK OF SPELER MEER DAN 0 PUNTEN HEEFT ANDERS UIT LIJST VERWIJDEREN.
         }
+
+
+
 
         private void dealerBeurt()
         {
@@ -114,6 +117,9 @@ namespace Spel_Blackjack
             }
         }
 
+
+
+
         private void checkWins()
         {
             foreach(Speler speler in SpelerLijst)
@@ -133,7 +139,7 @@ namespace Spel_Blackjack
                         updateMessage(speler.Naam + " heeft meer dan 21 (" + totaalPunten_speler + "), en verliest " + speler.Inzet + " punten.");
                         speler.AantalPunten -= speler.Inzet;
                     }
-                    else if (totaalPunten_speler == 21 || totaalPunten_dealer == 21)
+                    else if (totaalPunten_speler == 21)
                     {
                         if (totaalPunten_dealer == 21)
                         {
@@ -145,6 +151,10 @@ namespace Spel_Blackjack
                             speler.AantalPunten += uitbetaling;
                         }
 
+                    }
+                    else if (totaalPunten_dealer == 21)
+                    {
+                        updateMessage("De dealer heeft blackjack en wint!");
                     }
 
                     else if (totaalPunten_dealer > 21 && totaalPunten_speler < 21)
@@ -164,9 +174,12 @@ namespace Spel_Blackjack
                     }
                 }
                 speler.ResetHand();
-                dealer.ResetHand();
+         
             }
+            dealer.ResetHand();
         }
+
+
 
         private void geefKaart(Speler speler)
         {
@@ -174,6 +187,8 @@ namespace Spel_Blackjack
             speler.KaartGeven(gepakteKaart);
             Kaarten.RemoveAt(0);
         }
+
+
 
         public void InzetInnen()
         {
@@ -206,6 +221,9 @@ namespace Spel_Blackjack
             }
         }
 
+
+
+
         public void StartKaartenGeven()
         {
             for (int i = 0; i < 2; i++)
@@ -216,6 +234,9 @@ namespace Spel_Blackjack
                 }
             }
         }
+
+
+
 
         public void SpelersMaken(int aantalSpelers)
         {
@@ -230,6 +251,8 @@ namespace Spel_Blackjack
 
             SpelerLijst.Add(dealer);
         }
+
+
 
         public void genKaarten()
         {
@@ -268,10 +291,14 @@ namespace Spel_Blackjack
 
         }
 
+
+
         public void schudKaarten()
         {
             Kaarten = Kaarten.OrderBy(a => Guid.NewGuid()).ToList();
         }
+
+
 
         private void StatusTonen(Speler speler, bool meerKaarten)
         {

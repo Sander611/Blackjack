@@ -32,7 +32,14 @@ namespace Spel_Blackjack
                 nieuwspel.Starten();
 
                 update_Message("Druk op enter voor een nieuwspel.");
-                Console.ReadKey();
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    doorgaan = true;
+                }
+                else
+                {
+                    doorgaan = false;
+                }
             }
 
         }
