@@ -164,6 +164,7 @@ namespace Spel_Blackjack
                     }
                 }
                 speler.ResetHand();
+                dealer.ResetHand();
             }
         }
 
@@ -184,9 +185,22 @@ namespace Spel_Blackjack
                 }
                 else
                 {
-                    updateMessage(Convert.ToString(speler.Naam) + " u heeft momenteel " + Convert.ToString(speler.AantalPunten) + " punten. Hoeveel wilt u inzetten?");
-                    string inzet = readMessage();
-                    speler.Inzet = Convert.ToInt64(inzet);
+                    bool showMessage = true;
+                    while (showMessage){
+                        updateMessage(Convert.ToString(speler.Naam) + " u heeft momenteel " + Convert.ToString(speler.AantalPunten) + " punten. Hoeveel wilt u inzetten?");
+                        string inzet = readMessage();
+                        long inzetWaarde = Convert.ToInt64(inzet);
+
+                        if ((speler.AantalPunten - inzetWaarde) >= 0 ){
+                            speler.Inzet = inzetWaarde;
+                            showMessage = false;
+                        }
+                        else{
+                            updateMessage("Warning: De inzet waarde kan niet meer zijn dan uw totaal aantal punten.");
+                       
+                        }
+                    }
+
                 }
 
             }
