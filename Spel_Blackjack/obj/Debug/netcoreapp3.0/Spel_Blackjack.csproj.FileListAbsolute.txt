@@ -1,0 +1,11 @@
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.exe
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.deps.json
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.runtimeconfig.json
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.runtimeconfig.dev.json
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.dll
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\bin\Debug\netcoreapp3.0\Spel_Blackjack.pdb
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\obj\Debug\netcoreapp3.0\Spel_Blackjack.csprojAssemblyReference.cache
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\obj\Debug\netcoreapp3.0\Spel_Blackjack.AssemblyInfoInputs.cache
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\obj\Debug\netcoreapp3.0\Spel_Blackjack.AssemblyInfo.cs
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\obj\Debug\netcoreapp3.0\Spel_Blackjack.dll
+C:\Users\Sander\source\repos\Spel_Blackjack\Spel_Blackjack\obj\Debug\netcoreapp3.0\Spel_Blackjack.pdb
