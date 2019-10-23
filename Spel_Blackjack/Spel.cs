@@ -92,7 +92,7 @@ namespace Spel_Blackjack
             }
             spelerVerwijderen();
             checkWins();
-            // CHECK OF SPELER MEER DAN 0 PUNTEN HEEFT ANDERS UIT LIJST VERWIJDEREN.
+            //TODO: CHECK OF SPELER MEER DAN 0 PUNTEN HEEFT ANDERS UIT LIJST VERWIJDEREN.
             
         }
 
@@ -178,6 +178,10 @@ namespace Spel_Blackjack
                     {
                         updateMessage("De dealer had een betere hand dan " + speler.Naam + ". Deze speler verliest zijn inzet (" + speler.Inzet + ")");
                         speler.AantalPunten -= speler.Inzet;
+                    }
+                    else if (totaalPunten_dealer == totaalPunten_speler)
+                    {
+                        updateMessage(speler.Naam + " heeft totale waarde kaarten: " + totaalPunten_speler + ", wat hetzelfde is als de dealer. (PUSH) Geen uitbetaling voor zowel speler als dealer.");
                     }
                 }
                 speler.ResetHand();
