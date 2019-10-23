@@ -41,7 +41,7 @@ namespace Spel_Blackjack
             {
                 if (Convert.ToString(speler.Naam).Equals("dealer"))
                 {
-                    Console.WriteLine("Dealer is aan de beurt.");
+                    updateMessage("Dealer is aan de beurt.");
                     dealerBeurt();
                 }
                 else
@@ -363,7 +363,7 @@ namespace Spel_Blackjack
         {
             foreach (Kaart kaart in Kaarten)
             {
-                Console.WriteLine(kaart.NaamKaart);
+                updateMessage(kaart.NaamKaart);
             }
         }
 
