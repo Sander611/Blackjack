@@ -16,7 +16,7 @@ namespace Spel_Blackjack
 
         Speler dealer = new Dealer("dealer");
         public List<Speler> SpelerLijst = new List<Speler>();
-
+        public List<Speler> VerwijderLijst = new List<Speler>();
 
         public List<Kaart> Kaarten;
         private List<String> TemplateKaarten = new List<String>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Boer", "Vrouw", "Heer", "Aas"};
@@ -72,9 +72,9 @@ namespace Spel_Blackjack
                         }
                         else if (gedrukteKey == ConsoleKey.Q)
                         {
-                            //updateMessage(speler.Naam + " heeft het spel verlaten.");
-                            //SpelerLijst.Remove(speler); //WERKT NOG NIET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            //nogKeerVragen = false;
+                            updateMessage(speler.Naam + " heeft het spel verlaten.");
+                            VerwijderLijst.Add(speler);
+                            nogKeerVragen = false;
                         }
 
                         else if (gedrukteKey == ConsoleKey.P)
@@ -90,13 +90,20 @@ namespace Spel_Blackjack
                         
                 }
             }
-      
+            spelerVerwijderen();
             checkWins();
             // CHECK OF SPELER MEER DAN 0 PUNTEN HEEFT ANDERS UIT LIJST VERWIJDEREN.
+            
         }
 
 
-
+        private void spelerVerwijderen()
+        {
+            foreach(Speler speler in VerwijderLijst)
+            {
+                SpelerLijst.Remove(speler);
+            }
+        }
 
         private void dealerBeurt()
         {
@@ -154,7 +161,7 @@ namespace Spel_Blackjack
                     }
                     else if (totaalPunten_dealer == 21)
                     {
-                        updateMessage("De dealer heeft blackjack en wint!");
+                        updateMessage("De dealer heeft blackjack en wint van speler " + speler.Naam + "!");
                     }
 
                     else if (totaalPunten_dealer > 21 && totaalPunten_speler < 21)
