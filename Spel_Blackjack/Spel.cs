@@ -73,7 +73,7 @@ namespace Spel_Blackjack
                         else if (gedrukteKey == ConsoleKey.Q)
                         {
                             updateMessage(speler.Naam + " heeft het spel verlaten.");
-                            VerwijderLijst.Add(speler);
+                            VerwijderLijst.Add(speler); 
                             nogKeerVragen = false;
                         }
 
