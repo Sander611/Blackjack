@@ -33,13 +33,15 @@ namespace Spel_Blackjack.Spelers
                 totaal += kaart.Waarde;
             }
 
-            if (totaal > 21){
-                
-                foreach(Kaart kaart in Hand){
-                    if (kaart.Waarde == 11){
-                        totaal-=10;
-                    }
-                }   
+            int aantalAas = 0;
+            foreach(Kaart kaart in Hand){
+                if(kaart.Waarde == 11){
+                    aantalAas += 1;
+                }
+            }
+            while (totaal > 21 && aantalAas > 0){
+                totaal-=10;
+                aantalAas-=1;
             }
 
 

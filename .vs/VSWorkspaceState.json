@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Spel_Blackjack",
+    "\\Spel_Blackjack\\Kaarten",
     "\\Spel_Blackjack\\Spelers"
   ],
-  "SelectedNode": "\\Spel_Blackjack\\Spel.cs",
+  "SelectedNode": "\\Spel_Blackjack.sln",
   "PreviewInSolutionExplorer": false
 }
