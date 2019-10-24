@@ -33,6 +33,16 @@ namespace Spel_Blackjack.Spelers
                 totaal += kaart.Waarde;
             }
 
+            if (totaal > 21){
+                
+                foreach(Kaart kaart in Hand){
+                    if (kaart.Waarde == 11){
+                        totaal-=10;
+                    }
+                }   
+            }
+
+
             return totaal;
         }
 
